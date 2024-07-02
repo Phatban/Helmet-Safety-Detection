@@ -18,7 +18,7 @@ The Helmet Safety Detection system uses the YOLOv10 object detection model to id
 1. Clone the repository:
    ```bash
    git clone https://github.com/Phatban/Helmet-Safety-Detection.git
-   cd helmet-safety-detection
+   cd Helmet-Safety-Detection
 2. Install the required packages:
    ```bash
    pip install -r requirements.txt
