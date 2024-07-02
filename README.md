@@ -17,7 +17,7 @@ The Helmet Safety Detection system uses the YOLOv10 object detection model to id
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Phatban/helmet-safety-detection.git
+   git clone https://github.com/Phatban/Helmet-Safety-etection.git
    cd helmet-safety-detection
 2. Install the required packages:
    ```bash
@@ -30,14 +30,14 @@ This project is split into two main parts, each implemented in a separate Google
 
 ### 1. Pre-trained Model Inference
 
-Use the `notebooks/1_pretrained_model_inference.ipynb` notebook to:
+Use the `./pretrained_model_inference.ipynb` notebook to:
 - Set up the YOLOv10 environment
 - Download and use a pre-trained YOLOv10 model
 - Perform inference on sample images and videos
 
 ### 2. Custom Training and Evaluation
 
-Use the `notebooks/2_train_and_evaluate.ipynb` notebook to:
+Use the `./train_and_evaluate.ipynb` notebook to:
 - Prepare the Helmet Safety Dataset
 - Fine-tune YOLOv10 on the custom dataset
 - Evaluate the trained model
@@ -50,10 +50,6 @@ This project uses the Helmet Safety Dataset, which includes images of workers wi
 ## Model
 
 We use YOLOv10, a state-of-the-art object detection model, first with pre-trained weights and then fine-tuned on our specific helmet safety detection task.
-
-## Results
-
-[Include some sample results, metrics, or visualizations here]
 
 ## Contributing
 
