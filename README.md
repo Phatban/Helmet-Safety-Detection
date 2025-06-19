@@ -1,109 +1,65 @@
-# Helmet Safety Detection with YOLOv10
+# 🪖 Helmet Safety Detection with YOLOv10
 
-This project is part of the AIO2024 Course and aims to build an object detection system using **YOLOv10** to detect whether construction workers are wearing helmets on site.
+This project demonstrates how to fine-tune the **YOLOv10** object detection model to detect whether motorbike riders are wearing helmets, using a custom dataset.
 
-## 📌 Project Overview
+## 📁 Project Structure
 
-Helmet Safety Detection is a real-world application of object detection in Computer Vision. Given an input image, the system outputs bounding boxes for:
+- `fine_tuning_yolov10.ipynb`: Main notebook for training, validation, and evaluation of the YOLOv10 model on the helmet dataset.
+- `datasets/`: Folder containing the annotated helmet dataset (in YOLO format).
+- `runs/`: Output folder for saving training logs and results.
+- `weights/`: Pretrained and fine-tuned model weights.
 
-- Workers (`person`)
-- Heads (`head`)
-- Helmets (`helmet`)
+## 🧠 Model
 
-We utilize **YOLOv10**, the latest YOLO version from THU-MIG Lab, and fine-tune it on the **Helmet Safety Dataset**.
+- **Backbone**: YOLOv10n (Nano variant)
+- **Training mode**: Fine-tuning with a pretrained YOLOv10 checkpoint
+- **Framework**: Ultralytics YOLOv10 (PyTorch-based)
 
----
+## ✅ Dataset
 
-## 🔧 Setup Instructions
+- Format: YOLO format (images + `.txt` label files)
+- Classes:
+  - `0`: Head
+  - `1`: Helmet
+  - `2`: Person
+- Includes train/val split, augmentation, and preprocessing handled automatically by Ultralytics pipeline.
 
-### 1. Clone YOLOv10 Repository
+## 🚀 How to Run
+
+> 🛠️ **No need to install requirements manually.**  
+Just clone the repo and run the notebook.
+
 ```bash
-git clone https://github.com/THU-MIG/yolov10.git
-cd yolov10
+git clone https://github.com/Phatban/Helmet-Safety-Detection.git
+cd Helmet-Safety-Detection
 ```
 
-### 2. Install Dependencies
-```bash
-pip install -r requirements.txt
-pip install -e .
-```
+Then open and run `fine_tuning_yolov10.ipynb` step-by-step.
 
-### 3. Download Pretrained Weights
-```bash
-wget https://github.com/THU-MIG/yolov10/releases/download/v1.1/yolov10n.pt
-```
+## 📊 Results
 
----
+The fine-tuned YOLOv10n model achieved the following performance on the validation set:
 
-## 📂 Dataset
+| Metric               | Value  |
+|----------------------|--------|
+| **Precision**        | 0.820  |
+| **Recall**           | 0.784  |
+| **mAP@0.5**          | 0.847  |
+| **mAP@0.5:0.95**     | 0.432  |
 
-We use the **Safety Helmet Detection Dataset**, which includes labeled images with three classes: `person`, `helmet`, and `head`.
+### 🧠 Per-class metrics:
 
-### Download and Extract:
-```bash
-gdown '1twdtZEfcw4ghSZIiPDypJurZnNXzMO7R'
-mkdir safety_helmet_dataset
-unzip Safety_Helmet_Dataset.zip -d safety_helmet_dataset
-```
+| Class   | Precision | Recall | mAP@0.5 | mAP@0.5:0.95 |
+|---------|-----------|--------|---------|--------------|
+| Head    | 0.858     | 0.674  | 0.788   | 0.375        |
+| Helmet  | 0.811     | 0.873  | 0.905   | 0.452        |
+| Person  | 0.792     | 0.804  | 0.848   | 0.470        |
 
----
+## 📌 Conclusion
 
-## 🧠 Training the Model
+- YOLOv10n (Nano) provides a great balance between speed and accuracy for helmet safety detection.
+- The model is suitable for real-time deployment in smart city traffic systems.
 
-Using the YOLOv10n variant and training on the dataset:
+## ✍️ Author
 
-```python
-from ultralytics import YOLOv10
-
-model = YOLOv10('yolov10n.pt')
-model.train(
-    data='../safety_helmet_dataset/data.yaml',
-    epochs=50,
-    imgsz=640,
-    batch=256
-)
-```
-
----
-
-## 📊 Evaluating the Model
-
-After training, evaluate the model on the test set:
-
-```python
-model = YOLOv10('runs/detect/train/weights/best.pt')
-model.val(data='../safety_helmet_dataset/data.yaml', imgsz=640, split='test')
-```
-
----
-
-## 📸 Inference
-
-You can use an image or video (including YouTube URLs) as input:
-
-```python
-model = YOLOv10('yolov10n.pt')
-result = model(source='images/HCMC_Street.jpg')[0]
-result.save('./images/predict.png')
-```
-
----
-
-## 🏷️ Optional: Manual Labeling
-
-If you wish to create your own dataset, consider using [labelImg](https://github.com/heartexlabs/labelImg) for annotation. Make sure to export labels in **YOLO format**.
-
----
-
-## 📚 References
-
-- [YOLOv10 GitHub](https://github.com/THU-MIG/yolov10)
-- [labelImg Tool](https://github.com/heartexlabs/labelImg)
-- Helmet Dataset from AIO2024 Course
-
----
-
-## ✍️ Authors
-
-- Tan-Phat Nguyen
-- AIO Vietnam – AI Course 2024
+- [Tấn Phát Nguyễn](https://github.com/Phatban)
