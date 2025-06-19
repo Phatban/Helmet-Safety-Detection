@@ -105,5 +105,5 @@ If you wish to create your own dataset, consider using [labelImg](https://github
 
 ## ✍️ Authors
 
-- Tan-Phat NguyenNguyen
+- Tan-Phat Nguyen
 - AIO Vietnam – AI Course 2024
